@@ -1,0 +1,111 @@
+// Layout
+.profile {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #161b22;
+  border-radius: 12px;
+  color: white;
+  height: auto;
+
+  // Header
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  &__avatar {
+    margin-inline: auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid #30363d;
+  }
+
+  &__info {
+    h1 {
+      font-size: 2rem;
+      color: #f0f6fc;
+    }
+  }
+
+  .username {
+    color: #8b949e;
+    margin-bottom: 0.5rem;
+  }
+
+  .bio {
+    max-width: 500px;
+    margin-bottom: 1rem;
+  }
+
+  .links {
+    a {
+      display: inline-block;
+      margin-right: 1rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      color: #f0f6fc;
+      text-decoration: none;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #21262d;
+      }
+    }
+  }
+
+  // Stats
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid #30363d;
+    border-bottom: 1px solid #30363d;
+
+    div {
+      text-align: center;
+    }
+
+    span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f0f6fc;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: #8b949e;
+    }
+  }
+
+  // Details
+  .details {
+    h2 {
+      margin-bottom: 1rem;
+      color: #f0f6fc;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      padding: 0.4rem 0;
+    }
+  }
+
+  // Footer
+  .footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #8b949e;
+  }
+}
