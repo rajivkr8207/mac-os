@@ -1,12 +1,14 @@
 'use client'
-import { ReactNode } from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { Rnd } from 'react-rnd'
 import './macwindow.scss'
+
+type WindowState = Record<string, boolean>;
 
 interface MacWindowProps {
     children: ReactNode;
     windowName: string;
-    setWindowsOpens: React.Dispatch<React.SetStateAction<boolean>>
+    setWindowsOpens:  Dispatch<SetStateAction<Record<string, boolean>>>
 }
 
 const MacWindow = ({ children, windowName, setWindowsOpens }: MacWindowProps) => {

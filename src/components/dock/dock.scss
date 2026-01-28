@@ -1,16 +1,21 @@
-.dock{
+.dock {
     display: flex;
     position: absolute;
-    bottom: .5rem;
+    bottom: 0rem;
     left: 50%;
-    transform:  translateX(-50%);
+    transform: translateX(-50%) translateY(0%);
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(20px);
     gap: .75rem;
     padding: 1rem;
     border-radius: 1rem;
+    transition: all .3s ease;
 
-    .icon{
+    // &:hover{
+    // transform: translateX(-50%) translateY(0%);
+
+    // }
+    .icon {
         padding: .5rem;
         border-radius: 1rem;
         display: flex;
@@ -18,33 +23,56 @@
         align-items: center;
         aspect-ratio: 1/1;
         width: 4rem;
+        height: 4rem;
         transition: all .2s ease-in;
+        position: relative;
+        .active-dot{
+            width: .5rem;
+            height: .5rem;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -10%;
+            left: 50%;
+            transform: translateX(-50%);
 
-        &:hover{
+        }
+        &:hover {
             transform: scale(1.2) translateY(-25%);
         }
     }
-    .icon:hover + .icon,
-    .icon:has(+.icon:hover){
+
+    .icon:hover+.icon,
+    .icon:has(+.icon:hover) {
         transform: scale(1.1) translateY(-15%);
     }
 
-    .github, .cli{
+    .github,
+    .cli {
         background-color: black;
     }
-    .note{
+
+    .note {
         background: linear-gradient(to bottom, rgb(253, 182, 50), rgb(249, 168, 18));
     }
-    .pdf{
-        background:  linear-gradient(to bottom, rgb(253, 56, 95), rgb(246, 20, 50));
+
+    .pdf {
+        background: linear-gradient(to bottom, rgb(253, 56, 95), rgb(246, 20, 50));
     }
-    .calender, .mail{
+
+    .calender,
+    .mail {
         background: linear-gradient(to bottom, rgb(48, 86, 255), rgb(77, 18, 255));
     }
-    .spotify{
-        background: linear-gradient(to bottom, rgb(0, 210, 0),rgb(1, 194, 30));
+    .settings{
+        background-color: white;
+
     }
-    .link{
+    .spotify {
+        background: linear-gradient(to bottom, rgb(0, 210, 0), rgb(1, 194, 30));
+    }
+
+    .link {
         background: linear-gradient(to bottom, rgb(229, 0, 229), rgb(180, 0, 180));
     }
 }

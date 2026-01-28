@@ -2,11 +2,12 @@
 import Image from "next/image"
 import './github.scss'
 import Link from "next/link"
-import MacWindow from "../MacWindow/MacWindow"
+import MacWindow from "../../MacWindow/MacWindow"
+import type { Dispatch, SetStateAction } from "react"
 
 interface GithubProps {
     windowname: string
-    setWindowsopen: React.Dispatch<React.SetStateAction<boolean>>
+    setWindowsopen: Dispatch<SetStateAction<Record<string, boolean>>>
 }
 
 const Github: React.FC<GithubProps> = ({ windowname, setWindowsopen }) => {
@@ -14,12 +15,13 @@ const Github: React.FC<GithubProps> = ({ windowname, setWindowsopen }) => {
         <MacWindow windowName={windowname} setWindowsOpens={setWindowsopen}>
             <main className="profile">
                 <section className="profile__header">
-                    <img
+                    <Image
                         src="https://avatars.githubusercontent.com/u/160749166?v=4"
                         alt="Rajiv Kumar"
                         className="profile__avatar"
                         width={100}
-                        height={200}
+                        height={100}
+                        unoptimized
                     />
 
                     <div className="profile__info">
