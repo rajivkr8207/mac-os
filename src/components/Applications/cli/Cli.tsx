@@ -2,7 +2,6 @@
 import Terminal from 'react-console-emulator';
 import MacWindow from '../../MacWindow/MacWindow';
 import './cli.scss'
-import { Dispatch, SetStateAction } from 'react'
 const commands = {
     about: {
         description: 'About me',
@@ -88,24 +87,19 @@ Type 'help' to see all available commands, or try:
 Happy exploring! 🚀
 `
 
-interface windowProps {
-    windowname: string
-    setWindowsopen:  Dispatch<SetStateAction<Record<string, boolean>>>
-}
- 
-const Cli: React.FC<windowProps> = ({ windowname, setWindowsopen }) => {
-  return (
-    <MacWindow  windowName={windowname} setWindowsOpens={setWindowsopen}>
-         <div className='cli-window'>
-         <Terminal
-        commands={commands}
-        welcomeMessage={welcomeMessage}
-        promptLabel={'rajiv_kumar@candy:~$'}
-        promptLabelStyle={{color: '#25ff0d'}}
-      />
-         </div>
-    </MacWindow>
-  )
+const Cli = ({ windowName }: { windowName: string }) => {
+    return (
+        <MacWindow windowName={windowName}>
+            <div className='cli-window'>
+                <Terminal
+                    commands={commands}
+                    welcomeMessage={welcomeMessage}
+                    promptLabel={'rajiv_kumar@candy:~$'}
+                    promptLabelStyle={{ color: '#25ff0d' }}
+                />
+            </div>
+        </MacWindow>
+    )
 }
 
 export default Cli

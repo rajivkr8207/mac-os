@@ -1,0 +1,58 @@
+.settings {
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: white;
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    section {
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+.theme-toggle {
+    display: flex;
+    gap: 10px;
+
+    button {
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        background: #007aff;
+        color: white;
+    }
+}
+
+.wallpaper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 14px;
+}
+
+.wallpaper {
+    cursor: pointer;
+    text-align: center;
+
+    img {
+        width: 100%;
+        border-radius: 10px;
+        border: 2px solid transparent;
+    }
+
+    &:hover img {
+        border-color: #007aff;
+    }
+
+    span {
+        display: block;
+        margin-top: 6px;
+        font-size: 13px;
+    }
+}

@@ -8,10 +8,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'; // Import default st
 // Fix for missing declaration file warning
 const localizer = momentLocalizer(moment);
 
-interface windowProps {
-    windowname: string
-    setWindowsopen: React.Dispatch<React.SetStateAction<Record<string, boolean>>>
-}
 
 const customCalendarStyles: React.CSSProperties = {
     height: '100%',
@@ -23,9 +19,9 @@ const customCalendarStyles: React.CSSProperties = {
     border: '1px solid #333'
 };
 
-const CalenderCom: React.FC<windowProps> = ({ windowname, setWindowsopen }) => {
+const CalenderCom = ({ windowName }: { windowName: string }) => {
     return (
-        <MacWindow windowName={windowname} setWindowsOpens={setWindowsopen}>
+        <MacWindow windowName={windowName}>
             <div className="calendermain" style={{ padding: '24px' }}>
                 <Calendar
                     localizer={localizer}

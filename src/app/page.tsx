@@ -1,34 +1,124 @@
-'use client'
-import CalenderCom from "@/components/Applications/Calender/calender"
-import Cli from "@/components/Applications/cli/Cli"
-import Github from "@/components/Applications/github/Github"
-import Note from "@/components/Applications/note/Note"
-import Pdf from "@/components/Applications/pdf/Pdf"
-import Navbar from "@/components/Navbar/Navbar"
-import Dock from "@/components/dock/Dock"
-import { useState } from "react"
+'use client';
 
-// import  "./page.module.scss";
-const Home = () => {
-  const [windowstate, setWindowstate] = useState<Record<string, boolean>>({
-    github: false,
-    note: false,
-    pdf: false,
-    calender: false,
-    cli: false
-  })
-  return (
-    <main>
-      <Navbar />
-      <Dock windowstate={windowstate} setWindow={setWindowstate} />
-      {windowstate.github && <Github windowname='github' setWindowsopen={setWindowstate} />}
-      {windowstate.note && <Note windowname='note' setWindowsopen={setWindowstate} />}
-      {windowstate.pdf && <Pdf windowname='pdf' setWindowsopen={setWindowstate} />}
-      {windowstate.calender && <CalenderCom windowname='calender' setWindowsopen={setWindowstate} />}
-      {windowstate.cli && <Cli windowname='cli' setWindowsopen={setWindowstate} />}
+import { useEffect, useState } from 'react';
+import Navbar from "@/components/Navbar/Navbar";
+import Dock from "@/components/dock/Dock";
+import ContextMenu from "@/components/ContextMenu/ContextMenu";
+import WeatherCard from "@/components/weather/weatherCard";
 
-    </main>
-  )
+import Github from "@/components/Applications/github/Github";
+import Note from "@/components/Applications/note/Note";
+import Pdf from "@/components/Applications/pdf/Pdf";
+import Cli from "@/components/Applications/cli/Cli";
+import CalenderCom from "@/components/Applications/Calender/calender";
+import Settings from "@/components/Applications/settings/Settings";
+
+import { useWindowManager } from "./context/WindowManagerContext";
+
+interface MenuState {
+  visible: boolean;
+  x: number;
+  y: number;
+  transform: string;
 }
 
-export default Home
+const Home = () => {
+  const { windowsOpen } = useWindowManager();
+
+  const [menu, setMenu] = useState<MenuState>({
+    visible: false,
+    x: 0,
+    y: 0,
+    transform: 'translate(0, 0)',
+  });
+
+  /* -------------------------------
+     CONTEXT MENU HANDLER
+  -------------------------------- */
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+
+      const menuWidth = 200;
+      const menuHeight = 180;
+
+      let x = e.clientX;
+      let y = e.clientY;
+      let transform = 'translate(0, 0)';
+
+      // Right overflow
+      if (window.innerWidth - x < menuWidth) {
+        transform = 'translate(-100%, 0)';
+      }
+
+      // Bottom overflow
+      if (window.innerHeight - y < menuHeight) {
+        transform = 'translate(0, -100%)';
+      }
+
+      // Bottom-right corner
+      if (
+        window.innerWidth - x < menuWidth &&
+        window.innerHeight - y < menuHeight
+      ) {
+        transform = 'translate(-100%, -100%)';
+      }
+
+      setMenu({
+        visible: true,
+        x,
+        y,
+        transform,
+      });
+    };
+
+    window.addEventListener('contextmenu', handleContextMenu);
+    return () => window.removeEventListener('contextmenu', handleContextMenu);
+  }, []);
+
+  /* -------------------------------
+     WALLPAPER RESTORE
+  -------------------------------- */
+  useEffect(() => {
+    const wallpaper =
+      localStorage.getItem('wallpaper') || '/wallpaper/mac1.jpg';
+
+    document.body.style.setProperty(
+      '--wallpaper',
+      `url(${wallpaper})`
+    );
+  }, []);
+
+  return (
+    <div style={{ width: '100vw', height: '100vh' }}>
+      <Navbar />
+      <Dock />
+      <WeatherCard />
+
+      {/* Windows */}
+      {windowsOpen.github && <Github windowName="github" />}
+      {windowsOpen.note && <Note windowName="note" />}
+      {windowsOpen.pdf && <Pdf windowName="pdf" />}
+      {windowsOpen.calender && <CalenderCom windowName="calender" />}
+      {windowsOpen.terminal && <Cli windowName="terminal" />}
+      {windowsOpen.settings && <Settings windowName="settings" />}
+
+      {/* Context Menu */}
+      <ContextMenu
+        x={menu.x}
+        y={menu.y}
+        visible={menu.visible}
+        onClose={() => setMenu({ ...menu, visible: false })}
+        
+        style={{ transform: menu.transform }}
+      >
+        <div className="context-item">New Folder</div>
+        <div className="context-item">Get Info</div>
+        <div className="context-divider" />
+        <div className="context-item">Change Wallpaper</div>
+      </ContextMenu>
+    </div>
+  );
+};
+
+export default Home;

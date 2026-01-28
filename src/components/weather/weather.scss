@@ -1,0 +1,69 @@
+.weather-card {
+  width: 320px;
+  padding: 16px;
+  border-radius: 18px;
+
+  background: var(--bg-dark-color);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  border: 1px solid white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  margin: 2rem;
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .time {
+    font-size: 13px;
+    opacity: 0.9;
+  }
+
+  .temp {
+    text-align: right;
+
+    .value {
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .condition {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+  }
+}
+
+.range {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.hourly {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+
+  .hour {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    gap: 4px;
+
+    .sun {
+      font-size: 16px;
+    }
+  }
+}
