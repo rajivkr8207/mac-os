@@ -14,6 +14,8 @@ import CalenderCom from "@/components/Applications/Calender/calender";
 import Settings from "@/components/Applications/settings/Settings";
 
 import { useWindowManager } from "./context/WindowManagerContext";
+import HelpCenter from '@/components/Applications/help/Help';
+import { useSpotlightShortcut } from './context/useSpotlightShortcut';
 
 interface MenuState {
   visible: boolean;
@@ -23,18 +25,14 @@ interface MenuState {
 }
 
 const Home = () => {
-  const { windowsOpen } = useWindowManager();
-
+  const { windowsOpen, openWindow } = useWindowManager();
+  useSpotlightShortcut();
   const [menu, setMenu] = useState<MenuState>({
     visible: false,
     x: 0,
     y: 0,
     transform: 'translate(0, 0)',
   });
-
-  /* -------------------------------
-     CONTEXT MENU HANDLER
-  -------------------------------- */
   useEffect(() => {
     const handleContextMenu = (e: MouseEvent) => {
       e.preventDefault();
@@ -42,8 +40,8 @@ const Home = () => {
       const menuWidth = 200;
       const menuHeight = 180;
 
-      let x = e.clientX;
-      let y = e.clientY;
+      const x: number = e.clientX;
+      const y: number = e.clientY;
       let transform = 'translate(0, 0)';
 
       // Right overflow
@@ -76,9 +74,10 @@ const Home = () => {
     return () => window.removeEventListener('contextmenu', handleContextMenu);
   }, []);
 
-  /* -------------------------------
-     WALLPAPER RESTORE
-  -------------------------------- */
+
+
+
+
   useEffect(() => {
     const wallpaper =
       localStorage.getItem('wallpaper') || '/wallpaper/mac1.jpg';
@@ -102,6 +101,7 @@ const Home = () => {
       {windowsOpen.calender && <CalenderCom windowName="calender" />}
       {windowsOpen.terminal && <Cli windowName="terminal" />}
       {windowsOpen.settings && <Settings windowName="settings" />}
+      {windowsOpen.help && <HelpCenter windowName="help" />}
 
       {/* Context Menu */}
       <ContextMenu
@@ -109,13 +109,33 @@ const Home = () => {
         y={menu.y}
         visible={menu.visible}
         onClose={() => setMenu({ ...menu, visible: false })}
-        
         style={{ transform: menu.transform }}
       >
-        <div className="context-item">New Folder</div>
-        <div className="context-item">Get Info</div>
+        <div className="context-item" onClick={() => {
+          openWindow("github");
+          setMenu({ ...menu, visible: false });
+        }}>github</div>
+        <div className="context-item" onClick={() => {
+          openWindow("note");
+          setMenu({ ...menu, visible: false });
+        }}> Note</div>
+        <div className="context-item" onClick={() => {
+          openWindow("pdf");
+          setMenu({ ...menu, visible: false });
+        }}>pdf</div>
+        <div className="context-item" onClick={() => {
+          openWindow("terminal");
+          setMenu({ ...menu, visible: false });
+        }}>cli</div>
+        <div className="context-item" onClick={() => {
+          openWindow("calender");
+          setMenu({ ...menu, visible: false });
+        }}>calender</div>
         <div className="context-divider" />
-        <div className="context-item">Change Wallpaper</div>
+        <div className="context-item" onClick={() => {
+          openWindow("settings");
+          setMenu({ ...menu, visible: false });
+        }}>Change Wallpaper</div>
       </ContextMenu>
     </div>
   );

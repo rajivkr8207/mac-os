@@ -5,7 +5,11 @@ const Pdf = ({ windowName }: { windowName: string }) => {
   return (
     <MacWindow windowName={windowName}>
       <div className="resume">
-        <embed src="https://rj-figma.netlify.app/" />
+
+
+        <embed src="/resume.pdf" />
+
+        
       </div>
     </MacWindow>
   )

@@ -8,6 +8,10 @@ const Dock = ({ }) => {
     return (
         <>
         <footer className='dock'>
+        <div className='icon help' onClick={() => openWindow("help")}>
+                <Image src='/doc_icon/help.png' width={50} height={50} alt='' />
+                {windowsOpen?.help &&  <div className='active-dot'></div>}
+            </div>
             <div
                 className='icon github'
                 onClick={() => openWindow("github")}
@@ -36,15 +40,12 @@ const Dock = ({ }) => {
                 {windowsOpen?.settings &&  <div className='active-dot'></div>}
 
             </div>
-            <div className='icon link'>
-                <Image src='/doc_icon/link.svg' width={40} height={40} alt='' />
-                {/* <div className='active-dot'></div> */}
-            </div>
-            <div className='icon mail'>
+            
+            <div className='icon mail' onClick={()=>{window.open('mailto:rajiv.kr0829@gmail.com', "_blank")}}>
                 <Image src='/doc_icon/mail.svg' width={40} height={40} alt='' />
                 {/* <div className='active-dot'></div> */}
             </div>
-            <div className='icon cli' onClick={() => openWindow("cli")}>
+            <div className='icon cli' onClick={() => openWindow("terminal")}>
                 <Image src='/doc_icon/cli.svg' width={40} height={40} alt='' />
                 {windowsOpen?.cli &&  <div className='active-dot'></div>}
             </div>

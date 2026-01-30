@@ -1,0 +1,50 @@
+.help-container {
+    display: flex;
+    height: 100%;
+  }
+  
+  .help-sidebar {
+    width: 220px;
+    background: rgba(255,255,255,0.08);
+    padding: 16px;
+    
+  
+    button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      color: #000000;
+      cursor: pointer;
+  
+      &.active {
+        background: rgba(255,255,255,0.15);
+      }
+    }
+  }
+  
+  .help-content {
+    flex: 1;
+    padding: 24px;
+  
+    .feature-list {
+      display: grid;
+      gap: 14px;
+    }
+  
+    .feature-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+  
+      .done { color: #34c759; }
+      .planned { color: #ff9f0a; }
+    }
+  }
+  

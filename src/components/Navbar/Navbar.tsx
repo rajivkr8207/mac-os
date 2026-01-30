@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import './Navbar.scss'
 import DateTime from '../Datetime/DateTime'
+import { useSpotlight } from '@/app/context/SpotlightContext';
+import { FiSearch } from 'react-icons/fi';
 const Navbar = () => {
+    const { open } = useSpotlight();
     return (
         <>
             <nav>
@@ -20,7 +23,10 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="right">
-                <div className='wifi-icon'>
+                    <button onClick={open} className="Spotlight_Search">
+                        <FiSearch />
+                    </button>
+                    <div className='wifi-icon'>
                         <Image src='/nav_icon/wifibk.png' width={20} height={20} alt='' />
                     </div>
                     <DateTime />

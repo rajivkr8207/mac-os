@@ -34,6 +34,7 @@ export function WindowManagerProvider({
         calender: false,
         terminal: false,
         settings: false,
+        help: false,
     });
 
 
@@ -46,6 +47,7 @@ export function WindowManagerProvider({
         calender: 13,
         terminal: 14,
         settings: 15,
+        help: 9
     });
 
     const bringToFront = (name: string) => {

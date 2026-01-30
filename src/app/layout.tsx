@@ -2,16 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import { WindowManagerProvider } from "./context/WindowManagerContext";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { SpotlightProvider } from "./context/SpotlightContext";
+import Spotlight from "@/components/Spotlight/Spotlight";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,8 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-      <WindowManagerProvider>
-        {children}
+        <WindowManagerProvider>
+          <SpotlightProvider>
+            {children}
+            <Spotlight /> 
+          </SpotlightProvider>
         </WindowManagerProvider>
       </body>
     </html>

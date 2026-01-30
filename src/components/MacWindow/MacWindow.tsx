@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/purity */
 'use client'
 import type { ReactNode } from 'react';
 import { Rnd } from 'react-rnd'
@@ -19,8 +20,9 @@ const MacWindow = ({ children, windowName,  }: MacWindowProps) => {
     return (
         <Rnd
             default={{
-                x: 200,
-                y: 200,
+                x: typeof window !== 'undefined' ? Math.floor(Math.random() * (window.innerWidth - 1000)) : 200,
+                y: typeof window !== 'undefined' ? Math.floor(Math.random() * (window.innerHeight - 600)) : 200,
+
                 width: 1000,
                 height: 600,
             }}
