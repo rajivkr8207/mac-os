@@ -18,13 +18,14 @@
 }
 
 html[data-theme="light"] {
-  --bg: #f5f5f7;
-  --window-bg: rgba(255, 255, 255, 0.85);
+  --bg-white: rgba(255, 255, 255, 0.5);
+  --bg-color: rgba(255, 255, 255, 0.1);
+  --text-color: black; 
 }
-
-html[data-theme="dark"] {
-  --bg: #0f1115;
-  --window-bg: rgba(25, 25, 30, 0.85);
+html[data-theme='dark'] {
+  --bg-white: rgba(0, 0, 0, 0.5);
+  --bg-color: rgba(0, 0, 0, 0.1);
+  --text-color: white; 
 }
 
 html,

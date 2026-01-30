@@ -3,14 +3,18 @@ import './Navbar.scss'
 import DateTime from '../Datetime/DateTime'
 import { useSpotlight } from '@/app/context/SpotlightContext';
 import { FiSearch } from 'react-icons/fi';
+import { useTheme } from '@/app/context/ThemeContext';
 const Navbar = () => {
     const { open } = useSpotlight();
+  const { theme } = useTheme();
+
     return (
         <>
             <nav>
                 <div className="left">
                     <div className='apple-icon'>
-                        <Image src='/nav_icon/applebk.png' width={20} height={20} alt='' />
+                        
+                        <Image src={theme == 'light'? '/nav_icon/applebk.png' : '/nav_icon/apple.svg' } width={20} height={20} alt='' />
                     </div>
                     <div className='nav-item'>
                         <p>rajiv kumar</p>
@@ -27,7 +31,7 @@ const Navbar = () => {
                         <FiSearch />
                     </button>
                     <div className='wifi-icon'>
-                        <Image src='/nav_icon/wifibk.png' width={20} height={20} alt='' />
+                        <Image src={theme == 'light'? '/nav_icon/wifibk.png' : '/nav_icon/wifi.svg' } width={20} height={20} alt='' />
                     </div>
                     <DateTime />
                 </div>

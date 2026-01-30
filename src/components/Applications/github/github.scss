@@ -3,9 +3,9 @@
   max-width: 900px;
   margin: 3rem auto;
   padding: 2rem;
-  background: #161b22;
+  background: var(--bg-white);
   border-radius: 12px;
-  color: white;
+  color: var(--text-color);
   height: auto;
   z-index: 50;
   // Header
@@ -28,12 +28,10 @@
   &__info {
     h1 {
       font-size: 2rem;
-      color: #f0f6fc;
     }
   }
 
   .username {
-    color: #8b949e;
     margin-bottom: 0.5rem;
   }
 
@@ -49,7 +47,7 @@
       padding: 0.4rem 0.9rem;
       border: 1px solid #30363d;
       border-radius: 6px;
-      color: #f0f6fc;
+      color: var(--text-white);
       text-decoration: none;
       transition: background 0.2s ease;
 
@@ -75,13 +73,13 @@
     span {
       font-size: 1.5rem;
       font-weight: bold;
-      color: #f0f6fc;
+      color: var(--text-white);
     }
 
     label {
       display: block;
       font-size: 0.85rem;
-      color: #8b949e;
+      color: var(--text-white);
     }
   }
 
@@ -89,7 +87,7 @@
   .details {
     h2 {
       margin-bottom: 1rem;
-      color: #f0f6fc;
+      color: var(--text-white);
     }
 
     ul {

@@ -4,7 +4,7 @@ nav {
     backdrop-filter: blur(10px);
     padding-inline: 1rem;
     padding-block: .3rem;
-    color: black;
+    color: var(--text-color);
     text-transform: capitalize;
     display: flex;
     justify-content: space-between;
@@ -16,7 +16,8 @@ nav {
     }
 
     .Spotlight_Search{
-        background: var(--bg-white);
+        background: var(--bg-color);
+        color: var(--text-color);
         backdrop-filter: blur(10px);
         border: none;
         padding: .2rem 1rem;

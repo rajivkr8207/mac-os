@@ -4,10 +4,10 @@ import Image from 'next/image';
 import './settings.scss';
 import MacWindow from '@/components/MacWindow/MacWindow';
 import { useState, useEffect } from 'react';
-import { 
-  FiMonitor, 
-  FiMoon, 
-  FiSun, 
+import {
+  FiMonitor,
+  FiMoon,
+  FiSun,
   FiImage,
   FiUser,
   FiGlobe,
@@ -15,23 +15,24 @@ import {
   FiCheck,
   FiRefreshCw
 } from 'react-icons/fi';
-import { 
-  BsDisplay, 
+import {
+  BsDisplay,
 } from 'react-icons/bs';
+import { useTheme } from '@/app/context/ThemeContext';
 
 type TabType = 'general' | 'wallpaper';
 
 const Settings = ({ windowName }: { windowName: string }) => {
   const [activeTab, setActiveTab] = useState<TabType>('general');
-  const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>('auto');
   const [selectedWallpaper, setSelectedWallpaper] = useState<string>('mac1');
-
+  const { theme, setTheme } = useTheme();
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'auto' || 'auto';
     const savedWallpaper = localStorage.getItem('wallpaper') || 'mac1';
-    
+
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(savedTheme);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedWallpaper(savedWallpaper);
   }, []);
 
@@ -39,20 +40,6 @@ const Settings = ({ windowName }: { windowName: string }) => {
     document.body.style.setProperty('--wallpaper', `url(${src})`);
     localStorage.setItem('wallpaper', src);
     setSelectedWallpaper(id);
-  };
-
-  const handleThemeChange = (newTheme: 'light' | 'dark' | 'auto') => {
-    setTheme(newTheme);
-    
-    if (newTheme === 'auto') {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
-    } else {
-      document.documentElement.dataset.theme = newTheme;
-    }
-    
-    localStorage.setItem('theme', newTheme);
   };
 
   const wallpapers = [
@@ -80,7 +67,7 @@ const Settings = ({ windowName }: { windowName: string }) => {
               <span className="user-email">macOS</span>
             </div>
           </div>
-          
+
           <div className="sidebar-nav">
             {sidebarItems.map((item) => (
               <button
@@ -93,7 +80,7 @@ const Settings = ({ windowName }: { windowName: string }) => {
               </button>
             ))}
           </div>
-        
+
         </div>
 
         {/* Main Content Area */}
@@ -119,23 +106,23 @@ const Settings = ({ windowName }: { windowName: string }) => {
                     <div className="preference-item">
                       <label>Theme</label>
                       <div className="theme-selector">
-                        <button 
+                        <button
                           className={`theme-option ${theme === 'light' ? 'active' : ''}`}
-                          onClick={() => handleThemeChange('light')}
+                          onClick={() => setTheme('light')}
                         >
                           <FiSun />
                           <span>Light</span>
                         </button>
-                        <button 
+                        <button
                           className={`theme-option ${theme === 'dark' ? 'active' : ''}`}
-                          onClick={() => handleThemeChange('dark')}
+                          onClick={() => setTheme('dark')}
                         >
                           <FiMoon />
                           <span>Dark</span>
                         </button>
-                        <button 
+                        <button
                           className={`theme-option ${theme === 'auto' ? 'active' : ''}`}
-                          onClick={() => handleThemeChange('auto')}
+                          onClick={() => setTheme('auto')}
                         >
                           <FiRefreshCw />
                           <span>Auto</span>
@@ -158,9 +145,9 @@ const Settings = ({ windowName }: { windowName: string }) => {
                         onClick={() => setWallpaper(wp.src, wp.id)}
                       >
                         <div className="wallpaper-image">
-                          <Image 
-                            src={wp.src} 
-                            alt={wp.name} 
+                          <Image
+                            src={wp.src}
+                            alt={wp.name}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             style={{ objectFit: 'cover' }}
