@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import MacWindow from "../../MacWindow/MacWindow"
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atelierSeasideDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { atelierForestDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import './notes.scss'
 
 const Note = ( { windowName }: { windowName: string }) => {
@@ -17,7 +17,7 @@ const Note = ( { windowName }: { windowName: string }) => {
     return (
         <MacWindow windowName={windowName}>
             <div className="note-windows">
-                {markdown ? <SyntaxHighlighter language="javascript" style={atelierSeasideDark}>
+                {markdown ? <SyntaxHighlighter language="javascript" style={atelierForestDark}>
                     {markdown}
                 </SyntaxHighlighter>
 

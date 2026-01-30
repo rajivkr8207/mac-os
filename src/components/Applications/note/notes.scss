@@ -1,3 +1,7 @@
 .note-windows{
-    color: white;
+    color: var(--text-color);
+
+    pre{
+        font-size: 1rem;
+    }
 }

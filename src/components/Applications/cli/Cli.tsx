@@ -4,88 +4,140 @@ import MacWindow from '../../MacWindow/MacWindow';
 import './cli.scss'
 const commands = {
     about: {
-        description: 'About me',
-        usage: 'about',
-        fn: () => 'I am a full-stack web developer passionate about building modern web applications with React, Node.js, and cloud technologies.'
+      description: "About me",
+      usage: "about",
+      fn: () =>
+        "I am Rajiv, a self-taught Full-Stack Web Developer focused on building production-level web applications using React, Next.js, Node.js, and modern backend architectures.",
     },
+  
     skills: {
-        description: 'List technical skills',
-        usage: 'skills',
-        fn: () => `Frontend: React, Vue.js, Vanilla JS, Sass, HTML/CSS
-Backend: Node.js, Express, Python, Django
-Databases: MongoDB, PostgreSQL, MySQL
-Tools: Git, Docker, Webpack, Vite
-Cloud: AWS, Azure, Heroku`
+      description: "List technical skills",
+      usage: "skills",
+      fn: () => `
+  Frontend:
+  - React.js
+  - Next.js
+  - Tailwind CSS
+  - SCSS
+  
+  Backend:
+  - Node.js
+  - Express.js
+  - REST APIs
+  
+  Databases:
+  - PostgreSQL
+  - MongoDB
+  
+  Tools:
+  - Git
+  - Docker
+  - Linux
+  - Figma
+  `,
     },
+  
     projects: {
-        description: 'View my projects',
-        usage: 'projects',
-        fn: () => `1. Portfolio Website - React + Vite
-2. E-commerce Platform - MERN Stack
-3. Task Management App - Next.js
-4. Real-time Chat App - Socket.io
-5. Data Dashboard - React + Chart.js`
+      description: "View my projects",
+      usage: "projects",
+      fn: () => `
+  1. E-Commerce Backend API
+     - Express.js + MongoDB
+     - Auth, products, orders
+  
+  2. macOS-style Portfolio OS
+     - Next.js
+     - Window system, Notes, Terminal UI
+  `,
     },
+  
     experience: {
-        description: 'Display work experience',
-        usage: 'experience',
-        fn: () => `Senior Developer @ Tech Corp (2022 - Present)
-- Led development of 5+ React applications
-- Mentored junior developers
-
-Full Stack Developer @ Web Solutions (2020 - 2022)
-- Built scalable APIs with Node.js
-- Designed responsive UIs with React`
+      description: "Display work experience",
+      usage: "experience",
+      fn: () => `
+  Frontend Web Developer (Intern) @ InterWeU
+  Dec 2025 - Present
+  
+  - Built responsive UI components using React & Tailwind CSS
+  - Worked with Next.js for routing and performance optimization
+  - Integrated frontend with backend APIs
+  - Improved UI consistency and user experience
+  `,
     },
+  
+    education: {
+      description: "Display education & learning path",
+      usage: "education",
+      fn: () => `
+  Self-Taught Path:
+  - Full-Stack Web Development
+  
+  Online Learning:
+  - Data Structures & Algorithms
+  - System Design
+  - REST API Architecture
+  `,
+    },
+  
     contact: {
-        description: 'Get contact information',
-        usage: 'contact',
-        fn: () => `Email: ankur@example.com
-Phone: +1 (555) 123-4567
-Location: San Francisco, CA`
+      description: "Get contact information",
+      usage: "contact",
+      fn: () => `
+  Name: Rajiv
+  Location: India / Remote
+  Role: Full-Stack Developer
+  Status: Open to Opportunities
+  `,
     },
+  
     github: {
-        description: 'Open GitHub profile',
-        usage: 'github',
-        fn: () => {
-            window.open('https://github.com', '_blank')
-            return 'Opening GitHub...'
-        }
+      description: "Open GitHub profile",
+      usage: "github",
+      fn: () => {
+        window.open("https://github.com/rajivkr8207", "_blank");
+        return "Opening GitHub profile...";
+      },
     },
-    resume: {
-        description: 'Download resume',
-        usage: 'resume',
-        fn: () => 'Resume download started...'
-    },
+  
     social: {
-        description: 'View social media links',
-        usage: 'social',
-        fn: () => `Twitter: @ankurdev
-LinkedIn: /in/ankurprajapati
-Portfolio: ankurprajapati.dev`
+      description: "View social links",
+      usage: "social",
+      fn: () => `
+  GitHub: github.com/rajivkr8207
+  Portfolio: macOS-style Web Portfolio
+  LinkedIn: Coming Soon
+  `,
     },
+  
     echo: {
-        description: 'Echo a passed string',
-        usage: 'echo <string>',
-        fn: (...args: string[]) => args.join(' ')
-    }
-}
-const welcomeMessage = `
-╔════════════════════════════════════════╗
-║     Welcome to My Portfolio CLI!       ║
-╚════════════════════════════════════════╝
-
-Hello! 👋 Welcome to my interactive portfolio. You can navigate through my work experience, skills, and projects using terminal commands.
-
-Type 'help' to see all available commands, or try:
-  • about     - Learn about me
-  • skills    - View my technical skills
-  • projects  - Check out my work
-  • experience - See my career history
-  • contact   - Get in touch
-
-Happy exploring! 🚀
-`
+      description: "Echo a passed string",
+      usage: "echo <string>",
+      fn: (...args: string[]) => args.join(' ')
+    },
+  };
+  
+  const welcomeMessage = `
+  ╔════════════════════════════════════════╗
+  ║        Welcome to Rajiv CLI OS         ║
+  ╚════════════════════════════════════════╝
+  
+  Hello 👋
+  This is an interactive terminal-based portfolio.
+  
+  Type 'help' to list all commands, or try:
+    • about       - Know who I am
+    • skills      - View my tech stack
+    • projects    - Explore my projects
+    • experience  - Work experience
+    • education   - Learning journey
+    • contact     - Get in touch
+  
+  System Status: Stable
+  Mode: Building & Learning
+  Ready 🚀
+  `;
+  
+  
 
 const Cli = ({ windowName }: { windowName: string }) => {
     return (
