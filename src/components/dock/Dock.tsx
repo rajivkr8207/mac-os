@@ -47,7 +47,7 @@ const Dock = ({ }) => {
             </div>
             <div className='icon cli' onClick={() => openWindow("terminal")}>
                 <Image src='/doc_icon/cli.svg' width={40} height={40} alt='' />
-                {windowsOpen?.cli &&  <div className='active-dot'></div>}
+                {windowsOpen?.terminal &&  <div className='active-dot'></div>}
             </div>
         </footer>
         </>
